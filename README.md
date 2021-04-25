@@ -4,3 +4,4 @@
 - Onion pattern
 - Swagger
 - PostgreSQL connection
+- CRUD sample using CQRS
