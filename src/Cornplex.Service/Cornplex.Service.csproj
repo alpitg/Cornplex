@@ -5,8 +5,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="Contract\" />
-	  <Folder Include="Features\" />
+	  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Cornplex.Persistence\Cornplex.Persistence.csproj" />
 	</ItemGroup>
 
 </Project>
