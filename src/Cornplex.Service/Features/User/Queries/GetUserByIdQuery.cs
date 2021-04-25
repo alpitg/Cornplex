@@ -24,6 +24,16 @@
                 var User = await _context.Users.FirstOrDefaultAsync(a => a.Id == request.Id);
                 if (User == null) return null;
                 return User;
+
+                //OR
+                //var user = await _userRepository.GetAsync(u => u.Id == request.Id);
+                //if (user == null)
+                //{
+                //    return null;
+                //}
+                //var userDto = _userMapper.MapUserDto(user);
+                //return userDto;
+
             }
         }
     }

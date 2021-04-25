@@ -5,6 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Cornplex.Domain.Entities;
+    using System;
 
     public class CreateUserCommand : IRequest<int>
     {
@@ -22,15 +23,16 @@
             }
             public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
-                var User = new User();
-                User.Email = request.Email;
-                User.FirstName = request.FirstName;
-                User.LastName = request.LastName;
-                User.IsActive = request.IsActive;
+                var user = new User();
+                user.Email = request.Email;
+                user.FirstName = request.FirstName;
+                user.LastName = request.LastName;
+                user.IsActive = request.IsActive;
+                user.UpdatedOn = DateTime.UtcNow;
 
-                _context.Users.Add(User);
+                _context.Users.Add(user);
                 await _context.SaveChangesAsync();
-                return User.Id;
+                return user.Id;
             }
         }
     }

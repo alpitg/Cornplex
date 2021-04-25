@@ -1,6 +1,9 @@
 ﻿namespace Cornplex.Infrastructure.Extension
 {
+    using System.Reflection;
     using Cornplex.Persistence;
+    using Cornplex.Service.Features.User.Queries;
+    using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -16,6 +19,22 @@
                 options.UseNpgsql(connectionString,
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
+
+        public static void AddServiceLayer(this IServiceCollection services)
+        {
+            // Get the name of the assembly
+            services.AddMediatR(typeof(GetAllUserQuery).GetTypeInfo().Assembly);
+        }
+
+        public static void AddScopedServices(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+        }
+
+        //public static void AddController(this IServiceCollection serviceCollection)
+        //{
+        //    serviceCollection.AddControllers().AddNewtonsoftJson();
+        //}
 
         public static void AddVersion(this IServiceCollection serviceCollection)
         {

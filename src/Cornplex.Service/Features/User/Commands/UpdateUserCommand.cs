@@ -4,6 +4,7 @@ namespace Cornplex.Service.Features.User.Commands
     using Cornplex.Persistence;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -35,6 +36,7 @@ namespace Cornplex.Service.Features.User.Commands
                     user.FirstName = request.FirstName;
                     user.LastName = request.LastName;
                     user.IsActive = request.IsActive;
+                    user.UpdatedOn = DateTime.UtcNow;
 
                     _context.Users.Update(user);
                     await _context.SaveChangesAsync();

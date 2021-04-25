@@ -24,6 +24,10 @@ namespace Cornplex.Api
 
             services.AddDbContext(Configuration);
 
+            services.AddScopedServices();
+
+            services.AddServiceLayer();
+
             services.AddVersion();
 
             services.AddSwagger();
