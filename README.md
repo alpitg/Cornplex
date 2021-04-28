@@ -5,3 +5,5 @@
 - Swagger
 - PostgreSQL connection
 - CRUD sample using CQRS
+- Add repository classes
+- In-Memory cache

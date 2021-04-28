@@ -6,6 +6,7 @@
     using Cornplex.Domain.Entities;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using Cornplex.Persistence.IRepositories;
 
     public class GetUserByIdQuery : IRequest<User>
     {
@@ -13,24 +14,18 @@
 
         public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, User>
         {
-            private readonly IApplicationDbContext _context;
-            public GetUserByIdQueryHandler(IApplicationDbContext context)
+            private readonly IUserRepository _userRepo;
+            public GetUserByIdQueryHandler(IUserRepository userRepo)
             {
-                _context = context;
+                _userRepo = userRepo;
             }
 
             public async Task<User> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
             {
-                var User = await _context.Users.FirstOrDefaultAsync(a => a.Id == request.Id);
-                if (User == null) return null;
-                return User;
+                var user = await _userRepo.GetAsync(x => x.Id == request.Id);
+                if (user == null) return null;
+                return user;
 
-                //OR
-                //var user = await _userRepository.GetAsync(u => u.Id == request.Id);
-                //if (user == null)
-                //{
-                //    return null;
-                //}
                 //var userDto = _userMapper.MapUserDto(user);
                 //return userDto;
 

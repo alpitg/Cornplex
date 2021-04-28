@@ -2,6 +2,8 @@
 {
     using System.Reflection;
     using Cornplex.Persistence;
+    using Cornplex.Persistence.IRepositories;
+    using Cornplex.Persistence.Repositories;
     using Cornplex.Service.Features.User.Queries;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
@@ -12,10 +14,10 @@
 
     public static class ConfigureServiceContainer
     {
-        public static void AddDbContext(this IServiceCollection serviceCollection, IConfiguration configuration)
+        public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            serviceCollection.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString,
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
@@ -26,19 +28,20 @@
             services.AddMediatR(typeof(GetAllUserQuery).GetTypeInfo().Assembly);
         }
 
-        public static void AddScopedServices(this IServiceCollection serviceCollection)
+        public static void AddScopedServices(this IServiceCollection services)
         {
-            serviceCollection.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
-        //public static void AddController(this IServiceCollection serviceCollection)
+        //public static void AddController(this IServiceCollection services)
         //{
-        //    serviceCollection.AddControllers().AddNewtonsoftJson();
+        //    services.AddControllers().AddNewtonsoftJson();
         //}
 
-        public static void AddVersion(this IServiceCollection serviceCollection)
+        public static void AddVersion(this IServiceCollection services)
         {
-            serviceCollection.AddApiVersioning(config =>
+            services.AddApiVersioning(config =>
             {
                 config.DefaultApiVersion = new ApiVersion(1, 0);
                 config.AssumeDefaultVersionWhenUnspecified = true;
@@ -46,10 +49,10 @@
             });
         }
 
-        public static void AddSwagger(this IServiceCollection serviceCollection)
+        public static void AddSwagger(this IServiceCollection services)
         {
 
-            serviceCollection.AddSwaggerGen(c =>
+            services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cornplex.Api", Version = "v1" });
             });
