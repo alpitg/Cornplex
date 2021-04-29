@@ -6,4 +6,7 @@
 - PostgreSQL connection
 - CRUD sample using CQRS
 - Add repository classes
+- Scrutor
+    - Nuget package
+    - Used to keep code clean & to segregate the cache implementation from business logic
 - In-Memory cache

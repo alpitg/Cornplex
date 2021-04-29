@@ -4,6 +4,7 @@
     using Cornplex.Persistence;
     using Cornplex.Persistence.IRepositories;
     using Cornplex.Persistence.Repositories;
+    using Cornplex.Persistence.Repositories.Cached;
     using Cornplex.Service.Features.User.Queries;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,7 @@
         {
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             services.AddScoped<IUserRepository, UserRepository>();
+            services.Decorate<IUserRepository, CachedUserRepository>(); // cache
         }
 
         //public static void AddController(this IServiceCollection services)

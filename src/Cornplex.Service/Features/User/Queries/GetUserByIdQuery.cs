@@ -1,11 +1,9 @@
 ﻿namespace Cornplex.Service.Features.User.Queries
 {
-    using Cornplex.Persistence;
     using System.Threading;
     using System.Threading.Tasks;
     using Cornplex.Domain.Entities;
     using MediatR;
-    using Microsoft.EntityFrameworkCore;
     using Cornplex.Persistence.IRepositories;
 
     public class GetUserByIdQuery : IRequest<User>
@@ -22,7 +20,7 @@
 
             public async Task<User> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
             {
-                var user = await _userRepo.GetAsync(x => x.Id == request.Id);
+                var user = await _userRepo.GetByIdAsync(request.Id).ConfigureAwait(false);
                 if (user == null) return null;
                 return user;
 

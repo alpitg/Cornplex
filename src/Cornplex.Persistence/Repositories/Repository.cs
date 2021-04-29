@@ -20,7 +20,6 @@
             context = _dbContext.Set<TModel>();
         }
 
-
         public async Task<TModel> GetAsync(Expression<Func<TModel, bool>> predicate)
         {
             return await context.AsNoTracking().Where(predicate).FirstOrDefaultAsync();
@@ -73,6 +72,7 @@
         {
             return await _dbContext.SaveChangesAsync();
         }
+        
         public void Dispose()
         {
             _dbContext?.Dispose();

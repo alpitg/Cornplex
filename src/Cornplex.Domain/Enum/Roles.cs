@@ -15,4 +15,9 @@
         public static readonly string Admin = Guid.NewGuid().ToString();
         public static readonly string User = Guid.NewGuid().ToString();
     }
+
+    public static class CacheKeys
+    {
+        public static readonly string UserId = "user_id";
+    }
 }
