@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Cornplex.Domain.Entities;
     using System;
+    using Cornplex.Service.Models.Events;
 
     public class CreateUserCommand : IRequest<int>
     {
@@ -17,9 +18,12 @@
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
         {
             private readonly IApplicationDbContext _context;
-            public CreateUserCommandHandler(IApplicationDbContext context)
+            private readonly IMediator _mediator;
+            public CreateUserCommandHandler(IApplicationDbContext context, IMediator mediator)
             {
                 _context = context;
+                _mediator = mediator;
+
             }
             public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
@@ -32,6 +36,10 @@
 
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
+
+                // NOTE: Log & send mail
+                await _mediator.Publish(new UserCreatedEvent(request.Email, user.FirstName), cancellationToken);
+
                 return user.Id;
             }
         }

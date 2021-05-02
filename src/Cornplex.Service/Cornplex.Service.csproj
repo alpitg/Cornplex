@@ -5,11 +5,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.3.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="MailKit" Version="2.11.1" />
+		<PackageReference Include="MimeKit" Version="2.11.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Cornplex.Persistence\Cornplex.Persistence.csproj" />
+		<ProjectReference Include="..\Cornplex.Persistence\Cornplex.Persistence.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Models\Queries\" />
 	</ItemGroup>
 
 </Project>
