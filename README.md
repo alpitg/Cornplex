@@ -1,6 +1,9 @@
 ### Features
 
 
+### v3 - Beta
+- Helm graph support to host on kubernatics
+
 ### v2 - 5 February 2022
 - Docker support added
 

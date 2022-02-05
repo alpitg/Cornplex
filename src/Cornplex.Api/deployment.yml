@@ -21,12 +21,12 @@ spec:
         fsGroup: 2000
       containers:
         - name: cornplex-api-image
-          image: alpitg/cornplex-api:1.2
+          image: alpitg/cornplex-api:5000
           ports:
             - containerPort: 5000
-          env:
-            - name: ASPNETCORE_URLS
-              value: http://+:5000
+          # env:
+          #   - name: ASPNETCORE_URLS
+          #     value: http://+:5000
       # # imagePullSecrets: use imagePullSecrets when we use private container
       # imagePullSecrets:
       #   - name: cornplex-api-secret
