@@ -1,5 +1,9 @@
 ### Features
 
+
+### v2 - 5 February 2022
+- Docker suppport added
+
 ### v1 - 26 April 2021
 - Onion pattern
 - Swagger
@@ -14,7 +18,7 @@
 - Integration SMTP Mail
 
 
-### v2 - Planned 
+### Planned 
 - Otp mail
 - Otp mobile
 - JWT Token implementation
