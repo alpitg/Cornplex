@@ -1,0 +1,46 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cornplex-api-deployment
+  labels:
+    app: cornplex-api-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cornplex-api-app
+  template:
+    metadata:
+      labels:
+        app: cornplex-api-app
+    spec:
+      # securityContext: use securityContext for non-root-user, when we get an error related to user permission
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      containers:
+        - name: cornplex-api-image
+          image: alpitg/cornplex-api:1.2
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:5000
+      # # imagePullSecrets: use imagePullSecrets when we use private container
+      # imagePullSecrets:
+      #   - name: cornplex-api-secret
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cornplex-api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: cornplex-api-app
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

@@ -45,10 +45,11 @@ namespace Cornplex.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.ConfigureSwagger();
             }
+            
+            app.ConfigureSwagger();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection(); // for production enable this
 
             app.UseRouting();
 

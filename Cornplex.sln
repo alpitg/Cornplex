@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E8F5AB03-10E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{248442F3-0EAE-4CC3-95EE-099218D59919}"
 	ProjectSection(SolutionItems) = preProject
+		deployment.md = deployment.md
 		docs\solid.md = docs\solid.md
 	EndProjectSection
 EndProject
@@ -21,6 +22,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cornplex.Service", "src\Cornplex.Service\Cornplex.Service.csproj", "{AA20D5CC-137E-4985-9DD5-C93FD01B6C3F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cornplex.Api", "src\Cornplex.Api\Cornplex.Api.csproj", "{F149421E-882C-42C1-9E3E-A6A453B182D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E3FA3098-DD79-4C8E-AFA4-509544D6A7A5}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
