@@ -2,7 +2,7 @@
 
 
 ### v2 - 5 February 2022
-- Docker suppport added
+- Docker support added
 
 ### v1 - 26 April 2021
 - Onion pattern
