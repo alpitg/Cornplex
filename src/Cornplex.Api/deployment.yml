@@ -23,6 +23,13 @@ spec:
       containers:
         - name: cornplex-api-image
           image: alpitg/cornplex-api:5000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
           ports:
             - containerPort: 5000
           # env:
@@ -33,6 +40,7 @@ spec:
       #   - name: cornplex-api-secret
 
 ---
+# service - ClusterIP
 kind: Service
 apiVersion: v1
 metadata:
@@ -47,4 +55,18 @@ spec:
   ports:
     - protocol: TCP
       port: 5000
+      targetPort: 5000
+---
+# service - loadbalancer - for testing
+apiVersion: v1
+kind: Service
+metadata:
+  name: cornplex-api-app
+  namespace: cornplex-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: cornplex-api-app
+  ports:
+    - port: 5000
       targetPort: 5000
