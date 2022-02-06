@@ -3,6 +3,8 @@
 
 ### v3 - Beta
 - Helm graph support to host on kubernatics
+- Deployment on AKS using Helm chart `Status: Done` 
+- Deployment on AKS using Helm chart considering DEV/QA/UAT environments `Status: In-Progress` 
 
 ### v2 - 5 February 2022
 - Docker support added

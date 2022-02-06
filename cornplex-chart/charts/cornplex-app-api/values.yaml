@@ -1,39 +1,64 @@
 # test-app-api:
 replicaCount: 1
 
+namespace: cornplex-app
+app: cornplex-api-app
+
 image:
+  path: alpitg/cornplex-api:5000 # TODO: improve this later 
   repository: alpitg/cornplex-api
+  tag: "5000"
   pullPolicy: IfNotPresent
-  tag: "1.3"
 
-service:
-  type: ClusterIP
-  port: 80
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
 
-ingress:
-  enabled: true
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: "/"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path:  "/my-test-app"
-          pathType: ImplementationSpecific
-    # - host: localhost
-    #   paths:
-    #     - path: /
-    #       pathType: ImplementationSpecific
+ports:
+  containerPort: 5000
 
-tls: []
-#  - secretName: chart-example-tls
-#    hosts:
-#      - chart-example.local
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 3000
+  fsGroup: 2000
 
 autoscaling:
   enabled: false
 
 serviceAccount:
   create: false
+
+# service ---------
+service:
+  type: LoadBalancer # ClusterIP
+  port: 5000
+  targetPort: 5000
+
+# end service ---------
+
+# ingress ---------
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+  hosts:
+    - host: ""
+      paths:
+        - path: /
+          pathType: Prefix
+
+tls: []
+#  - secretName: chart-example-tls
+#    hosts:
+#      - chart-example.local
+
+# end ingress ---------
+
 # -----------------------------
 #
 # # Default values for cornplex-app-api.
