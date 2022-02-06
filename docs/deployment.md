@@ -7,6 +7,17 @@ docker run -d -p 5000:80 --name cornplexcontainer cornplex
 ```
 
 # kubectl
+
+## connect to AKS from local
+- az aks get-credentials --resource-group az-rg-free --name az-kaas-cornplex
+    - (config stored in my local - C:\Users\alpit\.kube\config)
+-  kubectl get deployment
+- kubectl create namespace cornplex-app
+- kubectl get deployment -n=cornplex-app
+- kubectl get pod -n=cornplex-app
+- kubectl logs `<your pod name here>` -n=cornplex-app
+
+
 ## kube dashboard
 - [ingress concept](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - kubectl config get-contexts
