@@ -4,6 +4,7 @@
 # https://medium.com/@Oskarr3/setting-up-ingress-on-minikube-6ae825e98f82
 # To run/expose locally use -> kubectl expose deployment cornplex-api-deployment --type=LoadBalancer --name=loadbalancer-service
 
+# service - ingress
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -12,11 +13,6 @@ metadata:
   # labels:
   #   app: cornplex-app
 spec:
-  # defaultBackend:
-  #   service:
-  #     name: default-http-backend
-  #     port:
-  #       number: 5000
   rules:
     - host: ""
       http:
@@ -42,29 +38,18 @@ spec:
                 name: cornplex-api-app # this should match your api-service-deployment metadata:name
                 port:
                   number: 5000
-#   externalIPs:
-#     - 80.11.12.10
 
-# ---
-
-# Sample 1
-
-# kind: Service
-# apiVersion: v1
-# metadata:
-#   name: ingress-nginx
-#   namespace: ingress-nginx
-#   labels:
-#     app: ingress-nginx
-# spec:
-#   selector:
-#     app: ingress-nginx
-#   ports:
-#     - name: http
-#       port: 80
-#       targetPort: http
-#     - name: https
-#       port: 443
-#       targetPort: http
-#   externalIPs:
-#     - 80.11.12.10
+---
+# service - loadbalancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: cornplex-api-app
+  namespace: cornplex-app
+spec:
+  selector:
+    app: cornplex-api-app
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: LoadBalancer
