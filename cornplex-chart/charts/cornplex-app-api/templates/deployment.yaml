@@ -22,8 +22,7 @@ spec:
         fsGroup: {{ .Values.securityContext.fsGroup }}
       containers:
         - name: {{ .Values.app }}
-          image: {{ .Values.image.path }}
-          # image: {{ .Values.image.repository }} : {{ .Values.image.tag }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             requests:

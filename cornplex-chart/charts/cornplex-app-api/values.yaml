@@ -5,7 +5,6 @@ namespace: cornplex-app
 app: cornplex-api-app
 
 image:
-  path: alpitg/cornplex-api:5000 # TODO: improve this later 
   repository: alpitg/cornplex-api
   tag: "5000"
   pullPolicy: IfNotPresent
