@@ -23,3 +23,9 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: '$(Build.BuildNumber)'
+
+- task: CopyPublishBuildArtifacts@1
+  inputs:
+    CopyRoot: './'
+    ArtifactName: 'drop'
+    ArtifactType: 'FilePath'
