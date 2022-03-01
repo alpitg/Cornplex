@@ -14,9 +14,12 @@ steps:
 - script: echo $(Build.BuildId)
   displayName: 'Build id'
 
+    
 - task: Docker@2
+  displayName: 'Docker build & push'
   inputs:
     containerRegistry: 'docker-service-connection'
     repository: 'alpitg/cornplex-api'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+    tags: '$(Build.BuildNumber)'
