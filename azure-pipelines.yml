@@ -17,6 +17,6 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'docker-service-connection'
-    repository: 'cornplex-api'
+    repository: 'alpitg/cornplex-api'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
