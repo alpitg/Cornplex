@@ -15,14 +15,14 @@ steps:
   displayName: 'Build BuildNumber'
 
     
-- task: Docker@2
-  displayName: 'Docker build & push'
-  inputs:
-    containerRegistry: 'docker-service-connection'
-    repository: 'alpitg/cornplex-api'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: '$(Build.BuildNumber)'
+# - task: Docker@2
+#   displayName: 'Docker build & push'
+#   inputs:
+#     containerRegistry: 'docker-service-connection'
+#     repository: 'alpitg/cornplex-api'
+#     command: 'buildAndPush'
+#     Dockerfile: '**/Dockerfile'
+#     tags: '$(Build.BuildNumber)'
 
 - task: CopyPublishBuildArtifacts@1
   inputs:
