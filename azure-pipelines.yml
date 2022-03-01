@@ -11,8 +11,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo $(Build.BuildId)
-  displayName: 'Build id'
+- script: echo $(Build.BuildNumber)
+  displayName: 'Build BuildNumber'
 
     
 - task: Docker@2
