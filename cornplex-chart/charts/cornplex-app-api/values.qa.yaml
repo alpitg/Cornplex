@@ -1,0 +1,4 @@
+replicaCount: 1
+
+namespace: cornplex-app-qa
+app: cornplex-api-app
