@@ -16,6 +16,7 @@
     using Microsoft.OpenApi.Models;
     using Microsoft.FeatureManagement;
     using Cornplex.Domain.Settings;
+    using System;
 
     public static class ConfigureServiceContainer
     {
@@ -25,6 +26,10 @@
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString,
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
+            var sdf = configuration["dev-connectionstring"];
+
+            Console.WriteLine(sdf);
         }
 
         public static void AddServiceLayer(this IServiceCollection services)
