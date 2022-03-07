@@ -7,8 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E8F5AB03-10E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{248442F3-0EAE-4CC3-95EE-099218D59919}"
 	ProjectSection(SolutionItems) = preProject
-		deployment.md = deployment.md
 		docs\deployment.md = docs\deployment.md
+		src\Cornplex.Domain\README.md = src\Cornplex.Domain\README.md
 		docs\solid.md = docs\solid.md
 	EndProjectSection
 EndProject

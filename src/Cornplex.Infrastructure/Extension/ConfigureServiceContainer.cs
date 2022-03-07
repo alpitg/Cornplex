@@ -22,14 +22,14 @@
     {
         public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            //var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var connectionString = configuration["PostgreSqlDbConnection"];
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString,
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
-            var sdf = configuration["dev-connectionstring"];
-
-            Console.WriteLine(sdf);
+            Console.WriteLine(connectionString);
         }
 
         public static void AddServiceLayer(this IServiceCollection services)

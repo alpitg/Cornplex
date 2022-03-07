@@ -31,8 +31,8 @@ namespace Cornplex.Api
                     var keyVaultEndpoint = setting["KeyVault:Endpoint"];
 
                     // NOTE: Different ways to access KeyVault
-                    // default is the best way so far
-                    var way = "way2";
+                    // Default is the best way so far
+                    var way = "way";
 
                     switch (way)
                     {
@@ -48,7 +48,10 @@ namespace Cornplex.Api
                         case "way2":
                             // NOTE: In case you want the read a secret value, use this.
                             var tenantId = setting["KeyVault:TenantId"];
-                            const string secretName = "dev-connectionstring";
+
+                            // Get it through user-secrets manager
+                            string secretName = setting["Database:keyVaultDbSecretKeyName"]; 
+
                             var clientCredential = new ClientSecretCredential(tenantId, clientId, clientSecret);
                             var client = new SecretClient(new Uri(keyVaultEndpoint), clientCredential);
                             var value = client.GetSecret(secretName).Value.Value;
@@ -60,9 +63,6 @@ namespace Cornplex.Api
                             config.AddAzureKeyVault(keyVaultEndpoint, clientId, clientSecret);
                             break;
                     }
-
-
-
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
