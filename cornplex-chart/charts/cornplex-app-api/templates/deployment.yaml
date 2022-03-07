@@ -39,3 +39,23 @@ spec:
       # # imagePullSecrets: use imagePullSecrets when we use private container
       # imagePullSecrets:
       #   - name: cornplex-api-secret
+
+---
+# This secret is used to set the initial credentials of the container.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.app }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.app }}
+    chart: "storageos.chart"
+type: "kubernetes.io/basic-auth"
+# type: Opaque
+    # app: "storageos.name"
+    # chart: "storageos.chart"
+# type: "kubernetes.io/storageos"
+data:
+  username: {{ default "" .Values.secrets.api.username | b64enc | quote }}
+  password: {{ default "" .Values.secrets.api.password | b64enc | quote }}
+  KeyVault: {{ default "" .Values.secrets.api.KeyVault | toJson | b64enc | quote }}

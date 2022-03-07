@@ -1,10 +1,13 @@
 
 ## docker
 ```
-docker build -t cornplex:5000 .
-docker tag cornplex:5000 alpitg/cornplex-api:5000
+docker build -t alpitg/cornplex-api:5000 .
+docker push  alpitg/cornplex-api:5000    
+
+docker tag cornplex-api:5000 alpitg/cornplex-api:5000
 docker run -d -p 5000:80 --name cornplexcontainer cornplex
 ```
+- Create docker service account for CD.
 
 # kubectl
 
@@ -16,7 +19,11 @@ docker run -d -p 5000:80 --name cornplexcontainer cornplex
 - kubectl get deployment -n=cornplex-app
 - kubectl get pod -n=cornplex-app
 - kubectl logs `<your pod name here>` -n=cornplex-app
+- kubectl expose deployment cornplex-app --type="LoadBalancer" --port=8080
 
+- secrets
+- kubectl get secret cornplex-api-app  -n cornplex-app-dev  -o jsonpath='{.data}' | base64 --decode
+- echo 'MWYyZDFlMmU2N2Rm' | base64 --decode
 
 ## kube dashboard
 - [ingress concept](https://kubernetes.io/docs/concepts/services-networking/ingress/)
