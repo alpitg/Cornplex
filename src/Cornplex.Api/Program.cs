@@ -26,9 +26,10 @@ namespace Cornplex.Api
                     // 1. Azure.Identity
                     // 2. Azure.Security.KeyVault.Secrets
 
-                    var clientId = setting["KeyVault:ClientId"];
-                    var clientSecret = setting["KeyVault:ClientSecret"];
-                    var keyVaultEndpoint = setting["KeyVault:Endpoint"];
+                    // NOTE: Read from environment variables
+                    var clientId = setting["KeyVault_ClientId"];
+                    var clientSecret = setting["KeyVault_ClientSecret"];
+                    var keyVaultEndpoint = setting["KeyVault_Endpoint"];
 
                     // NOTE: Different ways to access KeyVault
                     // Default is the best way so far
@@ -68,7 +69,7 @@ namespace Cornplex.Api
                 {
                     webBuilder
                     //.UseUrls("http://*:5000;https://*:5001") // for production: use port 5001
-                    .UseUrls("http://*:5000") // for development: use port 5000
+                    //.UseUrls("http://*:5000") // for development: use port 5000
                     .UseStartup<Startup>();
                 });
     }

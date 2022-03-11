@@ -33,6 +33,13 @@ spec:
               memory: {{ .Values.resources.limits.memory }}
           ports:
             - containerPort: {{ .Values.ports.containerPort }}
+          # Environment variable section
+          env:
+            {{- range $name, $value := .Values.env }}
+            - name: {{ $name }}
+              value: {{ $value | quote}}
+            {{- end }}
+
           # env:
           #   - name: ASPNETCORE_URLS
           #     value: http://+:5000

@@ -6,7 +6,7 @@ app: cornplex-api-app
 
 image:
   repository: alpitg/cornplex-api
-  tag: "5000-1"
+  tag: "env"
   pullPolicy: IfNotPresent
 
 resources:
@@ -60,6 +60,15 @@ secrets:
     password: alpit
     KeyVault: '{ "KeyVault": { "Endpoint": "https://az-free-dev.vault.azure.net/", "TenantId": "866a40b9-d4a2-40d2-9e94-ca555a1bfd49", "ClientId": "20527699-8c12-406d-b7c7-f2faa7dcad52", "ClientSecret": "6a_7Q~aRYQoe4Sr~vua__S8T4gxNW1Hla_BrF" } }'
 
+env:           
+  ASPNETCORE_ENVIRONMENT: "Development"
+  ASPNETCORE_URLS: "http://+:5001"
+  KeyVault_Endpoint: "https://az-free-dev.vault.azure.net/"
+  KeyVault_TenantId: "866a40b9-d4a2-40d2-9e94-ca555a1bfd49"
+  KeyVault_ClientId: "20527699-8c12-406d-b7c7-f2faa7dcad52"
+  KeyVault_ClientSecret: "6a_7Q~aRYQoe4Sr~vua__S8T4gxNW1Hla_BrF"
+  # helm upgrade --install chart_name --name release_name --set env.ASPNETCORE_ENVIRONMENT="Development" --set env.PASSWORD="28sin47dsk9ik"
+  # helm upgrade --install cornplex-app-dev . --namespace=cornplex-app-dev --set env.ASPNETCORE_ENVIRONMENT="Development"                                     
 
 #  - secretName: chart-example-tls
 #    hosts:
