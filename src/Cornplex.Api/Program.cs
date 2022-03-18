@@ -32,7 +32,6 @@ namespace Cornplex.Api
                     var keyVaultEndpoint = setting["KeyVault_Endpoint"];
 
                     // NOTE: Different ways to access KeyVault
-                    // Default is the best way so far
                     var way = "way";
 
                     switch (way)
@@ -60,6 +59,7 @@ namespace Cornplex.Api
                             break;
 
                         default:
+                            // NOTE: Best way to connect Azure key vault
                             // NOTE: Connect to Azure Key Vault using the Client Id and Client Secret (AAD) - Get them from Azure AD Application.
                             config.AddAzureKeyVault(keyVaultEndpoint, clientId, clientSecret);
                             break;

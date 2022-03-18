@@ -1,10 +1,12 @@
 ### Features
 
 
-### v3 - Beta
-- Helm graph support to host on kubernatics
-- Deployment on AKS using Helm chart `Status: Done` 
-- Deployment on AKS using Helm chart considering DEV/QA/UAT environments `Status: In-Progress` 
+### v4 - Beta
+- Use Azure key vault secret as Environment variable on AKS - deploy using helm 
+
+### v3 - 18 March 2022
+- Azure key vault support
+- Deployment on AKS using Helm chart
 
 ### v2 - 5 February 2022
 - Docker support added
