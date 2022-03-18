@@ -27,9 +27,9 @@ namespace Cornplex.Api
                     // 2. Azure.Security.KeyVault.Secrets
 
                     // NOTE: Read from environment variables
-                    var clientId = setting["KeyVault_ClientId"];
-                    var clientSecret = setting["KeyVault_ClientSecret"];
-                    var keyVaultEndpoint = setting["KeyVault_Endpoint"];
+                    var clientId = setting["Azure-KeyVault-ClientId"];
+                    var clientSecret = setting["Azure-KeyVault-ClientSecret"];
+                    var keyVaultEndpoint = setting["Azure-KeyVault-Endpoint"];
 
                     // NOTE: Different ways to access KeyVault
                     var way = "way";
@@ -50,7 +50,7 @@ namespace Cornplex.Api
                             var tenantId = setting["KeyVault:TenantId"];
 
                             // Get it through user-secrets manager
-                            string secretName = setting["Database:keyVaultDbSecretKeyName"]; 
+                            string secretName = setting["Database:keyVaultDbSecretKeyName"];
 
                             var clientCredential = new ClientSecretCredential(tenantId, clientId, clientSecret);
                             var client = new SecretClient(new Uri(keyVaultEndpoint), clientCredential);
