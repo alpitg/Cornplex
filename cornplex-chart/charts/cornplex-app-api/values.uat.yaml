@@ -1,4 +1,0 @@
-replicaCount: 1
-
-namespace: cornplex-app-uat
-app: cornplex-api-app
