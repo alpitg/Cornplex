@@ -2,11 +2,12 @@
 
 
 ### v4 - Beta
-- Use Azure key vault secret as Environment variable on AKS - deploy using helm 
+- Create automated pipeline to deploy the code
 
 ### v3 - 18 March 2022
 - Azure key vault support
 - Deployment on AKS using Helm chart
+- Secrets - Use Azure key vault secret as Environment variable on AKS - deploy using helm 
 
 ### v2 - 5 February 2022
 - Docker support added
