@@ -68,8 +68,7 @@ namespace Cornplex.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                    //.UseUrls("http://*:5000;https://*:5001") // for production: use port 5001
-                    .UseUrls("http://*:5000") // for development: use port 5000
+                    //.UseUrls("http://*:5000;https://*:5001") // for production: set it in deployment.yaml
                     .UseStartup<Startup>();
                 });
     }
